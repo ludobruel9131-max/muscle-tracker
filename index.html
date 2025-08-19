@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muscle Tracker</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muscle Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Muscle Tracker 💪</h1>
-  </header>
+  <div class="container">
+    <h1>Muscle Tracker</h1>
 
-  <section id="profil">
-    <h2>Profil Utilisateur</h2>
-    <label>Nom: <input type="text" id="nomUtilisateur" placeholder="Ton nom"></label>
-    <label>Niveau: 
-      <select id="niveau">
+    <div class="profile">
+      <label>Nom :</label><input type="text" id="userName" placeholder="Ton nom">
+      <label>Poids (kg) :</label><input type="number" id="userWeight" placeholder="70">
+    </div>
+
+    <div class="settings">
+      <label>Niveau :</label>
+      <select id="level">
         <option value="débutant">Débutant</option>
         <option value="intermédiaire">Intermédiaire</option>
         <option value="avancé">Avancé</option>
       </select>
-    </label>
-    <button id="chargerExos">Charger séance</button>
-  </section>
+    </div>
 
-  <section id="seance" class="hidden">
-    <h2>Séance en cours</h2>
-    <div id="exerciceCourant"></div>
-    <div id="timer">00:00</div>
-    <div id="etat">Repos / Effort</div>
-    <div id="calories">Calories brûlées: 0</div>
-    <button id="startStop">Démarrer / Pause</button>
-  </section>
+    <div class="workout">
+      <h2>Séance en cours</h2>
+      <div id="currentExercise"></div>
+      <div id="timer">00:00</div>
+      <button id="startBtn">Commencer la séance</button>
+    </div>
 
-  <section id="progression">
-    <h2>Courbes de progression</h2>
-    <canvas id="chart" width="400" height="200"></canvas>
-  </section>
+    <div class="progress">
+      <h2>Progression</h2>
+      <canvas id="calorieChart" width="400" height="200"></canvas>
+    </div>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-
