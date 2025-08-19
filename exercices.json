@@ -1,12 +1,12 @@
 [
-    {"name_fr": "Pompes", "muscle": "Poitrine", "level": "beginner", "calories": 8},
-    {"name_fr": "Squats", "muscle": "Jambes", "level": "beginner", "calories": 10},
-    {"name_fr": "Planche", "muscle": "Abdos", "level": "beginner", "calories": 5},
-    {"name_fr": "Fentes", "muscle": "Jambes", "level": "intermediate", "calories": 12},
-    {"name_fr": "Tractions", "muscle": "Dos", "level": "advanced", "calories": 15},
-    {"name_fr": "Burpees", "muscle": "Full Body", "level": "advanced", "calories": 20},
-    {"name_fr": "Dips", "muscle": "Triceps", "level": "intermediate", "calories": 10},
-    {"name_fr": "Mountain Climbers", "muscle": "Abdos", "level": "intermediate", "calories": 12},
-    {"name_fr": "Jumping Jacks", "muscle": "Cardio", "level": "beginner", "calories": 6},
-    {"name_fr": "Superman", "muscle": "Dos", "level": "beginner", "calories": 4}
+{"name":"Pompes","muscle":"Poitrine","level":"beginner","calories":8},
+{"name":"Squats","muscle":"Jambes","level":"beginner","calories":10},
+{"name":"Planche","muscle":"Abdos","level":"beginner","calories":5},
+{"name":"Fentes","muscle":"Jambes","level":"intermediate","calories":12},
+{"name":"Tractions","muscle":"Dos","level":"advanced","calories":15},
+{"name":"Burpees","muscle":"Full Body","level":"advanced","calories":20},
+{"name":"Dips","muscle":"Triceps","level":"intermediate","calories":10},
+{"name":"Mountain Climbers","muscle":"Abdos","level":"intermediate","calories":12},
+{"name":"Jumping Jacks","muscle":"Cardio","level":"beginner","calories":6},
+{"name":"Superman","muscle":"Dos","level":"beginner","calories":4}
 ]
