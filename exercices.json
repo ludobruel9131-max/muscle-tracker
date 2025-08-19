@@ -1,1 +1,27 @@
+[
+  {
+    "nom": "Pompes",
+    "niveau": "débutant",
+    "repetitions": 10,
+    "effortSec": 30,
+    "reposSec": 80,
+    "calories": 5
+  },
+  {
+    "nom": "Squats",
+    "niveau": "débutant",
+    "repetitions": 10,
+    "effortSec": 30,
+    "reposSec": 80,
+    "calories": 6
+  },
+  {
+    "nom": "Planche",
+    "niveau": "débutant",
+    "repetitions": 1,
+    "effortSec": 30,
+    "reposSec": 60,
+    "calories": 4
+  }
+]
 
