@@ -1,59 +1,46 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #FF6B6B, #FFD93D);
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    color: white;
 }
 
-#calendar {
-  margin: 20px 0;
-  display: flex;
-  flex-wrap: wrap;
+h1, h2 {
+    margin: 0 0 10px 0;
 }
 
-#calendar div {
-  width: 14.28%;
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
+section {
+    background: rgba(255,255,255,0.8);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-#calendar .today {
-  background-color: #00bfff;
-  color: white;
-}
-
-#today-session {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+input, select, button {
+    margin: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 #timer {
-  font-size: 2em;
-  margin: 20px 0;
+    font-size: 2em;
+    text-align: center;
+    margin: 20px 0;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  background-color: #00bfff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+#calendar {
+    max-width: 100%;
+    margin: 0 auto;
 }
