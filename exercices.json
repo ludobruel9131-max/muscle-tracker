@@ -1,6 +1,6 @@
 [
-  {"nom": "Pompes", "effort":30, "repos":60, "reps":12},
-  {"nom": "Squats", "effort":30, "repos":60, "reps":15},
-  {"nom": "Fentes", "effort":30, "repos":60, "reps":12},
-  {"nom": "Planche", "effort":40, "repos":60, "reps":1}
+  { "id": 1, "name": "Pompes", "muscle": "Pectoraux", "reps": 10, "duration": 30, "pause": 80 },
+  { "id": 2, "name": "Squats", "muscle": "Jambes", "reps": 15, "duration": 30, "pause": 80 },
+  { "id": 3, "name": "Abdos", "muscle": "Abdominaux", "reps": 20, "duration": 30, "pause": 80 },
+  { "id": 4, "name": "Fentes", "muscle": "Jambes", "reps": 12, "duration": 30, "pause": 80 }
 ]
