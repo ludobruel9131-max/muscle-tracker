@@ -1,87 +1,14 @@
-body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
-    color: #333;
-}
-
-header {
-    background: linear-gradient(90deg, #ff7e5f, #feb47b);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-}
-
-h1, h2 {
-    margin: 0.5rem 0;
-}
-
-main {
-    padding: 2rem;
-    display: grid;
-    gap: 2rem;
-}
-
-section {
-    background: white;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-input, select, button {
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    font-size: 1rem;
-}
-
-button {
-    background: #ff7e5f;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background: #feb47b;
-}
-
-#exercise-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.exercise-card {
-    background: #ffe6d5;
-    padding: 1rem;
-    border-radius: 8px;
-    flex: 1 1 calc(50% - 1rem);
-}
-
-#timer {
-    margin-top: 1rem;
-    font-size: 1.5rem;
-    text-align: center;
-}
-
-#calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.5rem;
-}
-
-.calendar-day {
-    padding: 1rem;
-    background: #f4f4f4;
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.today {
-    background: #ff7e5f;
-    color: white;
-}
+body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333; }
+header { background:linear-gradient(90deg, #ff7e5f, #feb47b); color:white; padding:2rem; text-align:center; }
+h1,h2 { margin:0.5rem 0; }
+main { padding:2rem; display:grid; gap:2rem; }
+section { background:white; padding:1rem; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+input, select, button { margin:0.5rem 0; padding:0.5rem; font-size:1rem; }
+button { background:#ff7e5f; border:none; color:white; cursor:pointer; border-radius:5px; }
+button:hover { background:#feb47b; }
+#exercise-list { display:flex; flex-wrap:wrap; gap:1rem; }
+.exercise-card { background:#ffe6d5; padding:1rem; border-radius:8px; flex:1 1 calc(50% - 1rem); }
+#timer { margin-top:1rem; font-size:1.5rem; text-align:center; }
+#calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:0.5rem; }
+.calendar-day { padding:1rem; background:#f4f4f4; border-radius:8px; text-align:center; cursor:pointer; }
+.today { background:#ff7e5f; color:white; }
