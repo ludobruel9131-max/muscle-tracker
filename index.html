@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muscle Tracker Pro</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Muscle Tracker Pro</h1>
+    <header>
+        <h1>Mon Application Fitness</h1>
+        <nav>
+            <button onclick="showSection('dashboard')">Dashboard</button>
+            <button onclick="showSection('calendar')">Calendrier</button>
+            <button onclick="showSection('stats')">Statistiques</button>
+            <button onclick="showSection('profile')">Profil</button>
+        </nav>
+    </header>
 
-    <div class="profile">
-      <label>Nom :</label>
-      <input type="text" id="userName" placeholder="Ton nom">
-      <label>Poids (kg) :</label>
-      <input type="number" id="userWeight" placeholder="70">
-      <label>Niveau :</label>
-      <select id="level">
-        <option value="débutant">Débutant</option>
-        <option value="intermédiaire">Intermédiaire</option>
-        <option value="avancé">Avancé</option>
-      </select>
-    </div>
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <div id="todayWorkout"></div>
+            <div id="timer">00:00</div>
+            <button onclick="startWorkout()">Commencer la séance</button>
+        </section>
 
-    <div class="timer-global">
-      <h2>Temps total : <span id="globalTimer">00:00</span></h2>
-    </div>
+        <section id="calendar" class="hidden">
+            <h2>Calendrier</h2>
+            <div id="calendarContainer"></div>
+        </section>
 
-    <div class="workout">
-      <h2>Séance en cours</h2>
-      <div id="currentExercise"></div>
-      <div id="timer">00:00</div>
-      <button id="startBtn">Commencer la séance</button>
-    </div>
+        <section id="stats" class="hidden">
+            <h2>Statistiques</h2>
+            <canvas id="progressChart" width="400" height="200"></canvas>
+        </section>
 
-    <div class="progress">
-      <h2>Progression des calories</h2>
-      <canvas id="calorieChart" width="400" height="200"></canvas>
-    </div>
-  </div>
+        <section id="profile" class="hidden">
+            <h2>Profil</h2>
+            <div id="profileInfo"></div>
+        </section>
+    </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+
