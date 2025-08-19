@@ -1,6 +1,7 @@
 [
-  { "id": 1, "name": "Pompes", "muscle": "Pectoraux", "reps": 10, "duration": 30, "pause": 80 },
-  { "id": 2, "name": "Squats", "muscle": "Jambes", "reps": 15, "duration": 30, "pause": 80 },
-  { "id": 3, "name": "Abdos", "muscle": "Abdominaux", "reps": 20, "duration": 30, "pause": 80 },
-  { "id": 4, "name": "Fentes", "muscle": "Jambes", "reps": 12, "duration": 30, "pause": 80 }
+    {"name":"Pompes", "duration":30, "rest":80, "level":{"débutant":3,"intermédiaire":4,"avancé":5}},
+    {"name":"Squats", "duration":30, "rest":80, "level":{"débutant":3,"intermédiaire":4,"avancé":5}},
+    {"name":"Planche", "duration":30, "rest":80, "level":{"débutant":2,"intermédiaire":3,"avancé":4}},
+    {"name":"Fentes", "duration":30, "rest":80, "level":{"débutant":3,"intermédiaire":4,"avancé":5}}
 ]
+
