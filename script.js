@@ -1,94 +1,63 @@
-let currentSection = 'dashboard';
 let exercises = [];
-let workoutIndex = 0;
+let currentExercise = 0;
 let isRest = false;
 let timerInterval;
-let timeLeft = 0;
 
-// Load exercises
+// Charger les exercices depuis le JSON
 fetch('exercises.json')
   .then(res => res.json())
-  .then(data => { exercises = data; displayWorkout(); });
+  .then(data => {
+    exercises = data;
+    displayTodaySession();
+    generateCalendar();
+  });
 
-// Show/hide sections
-function showSection(section) {
-    document.getElementById(currentSection).classList.add('hidden');
-    document.getElementById(section).classList.remove('hidden');
-    currentSection = section;
+// Afficher la séance du jour
+function displayTodaySession() {
+  const container = document.getElementById('session-exercises');
+  container.innerHTML = '';
+  exercises.forEach((ex, i) => {
+    const div = document.createElement('div');
+    div.textContent = `${ex.name} - ${ex.reps} reps - ${ex.duration}s`;
+    container.appendChild(div);
+  });
 }
 
-// Display today's workout
-function displayWorkout() {
-    const container = document.getElementById('todayWorkout');
-    container.innerHTML = exercises.map(e => `
-        <div>
-            <strong>${e.name}</strong> - ${e.reps} reps - ${e.duration}s effort / ${e.pause}s pause
-        </div>
-    `).join('');
-}
+// Timer global pour la séance
+document.getElementById('start-btn').addEventListener('click', () => {
+  startExercise(currentExercise);
+});
 
-// Timer functions
-function startWorkout() {
-    workoutIndex = 0;
-    isRest = false;
-    nextExercise();
-}
+function startExercise(index) {
+  if (index >= exercises.length) {
+    alert("Séance terminée !");
+    return;
+  }
 
-function nextExercise() {
-    if (workoutIndex >= exercises.length) {
-        document.getElementById('timer').innerText = "Séance terminée!";
-        clearInterval(timerInterval);
-        return;
+  let duration = isRest ? exercises[index].rest : exercises[index].duration;
+  document.getElementById('timer').textContent = duration;
+
+  timerInterval = setInterval(() => {
+    duration--;
+    document.getElementById('timer').textContent = duration;
+    if (duration <= 0) {
+      clearInterval(timerInterval);
+      isRest = !isRest;
+      if (!isRest) currentExercise++;
+      startExercise(currentExercise);
     }
-
-    const ex = exercises[workoutIndex];
-    timeLeft = isRest ? ex.pause : ex.duration;
-    updateTimerDisplay();
-
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        updateTimerDisplay();
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            if (isRest) {
-                workoutIndex++;
-            }
-            isRest = !isRest;
-            nextExercise();
-        }
-    }, 1000);
+  }, 1000);
 }
 
-function updateTimerDisplay() {
-    const minutes = Math.floor(timeLeft / 60).toString().padStart(2,'0');
-    const seconds = (timeLeft % 60).toString().padStart(2,'0');
-    document.getElementById('timer').innerText = `${minutes}:${seconds}`;
+// Calendrier simple
+function generateCalendar() {
+  const cal = document.getElementById('calendar');
+  const today = new Date().getDate();
+  for(let i=1;i<=30;i++){
+    const day = document.createElement('div');
+    day.textContent = i;
+    if(i === today) day.classList.add('today');
+    cal.appendChild(day);
+  }
 }
 
-// Calendar
-function createCalendar() {
-    const container = document.getElementById('calendarContainer');
-    const today = new Date().getDate();
-    for (let i = 1; i <= 30; i++) {
-        const day = document.createElement('div');
-        day.classList.add('calendar-day');
-        if (i === today) day.classList.add('calendar-today');
-        day.innerText = i;
-        container.appendChild(day);
-    }
-}
-createCalendar();
-
-// Profile
-function loadProfile() {
-    const profile = { name: "John Doe", age: 25, weight: 70, height: 170, level: "Intermédiaire" };
-    const container = document.getElementById('profileInfo');
-    container.innerHTML = `
-        Nom: ${profile.name}<br>
-        Age: ${profile.age} ans<br>
-        Poids: ${profile.weight} kg<br>
-        Taille: ${profile.height} cm<br>
-        Niveau: ${profile.level}
-    `;
-}
-loadProfile();
