@@ -1,7 +1,6 @@
 [
-  {"nom": "Pompes", "effort":30, "repos":80, "reps":10},
-  {"nom": "Squats", "effort":30, "repos":80, "reps":12},
-  {"nom": "Fentes", "effort":30, "repos":80, "reps":10},
-  {"nom": "Planche", "effort":30, "repos":80, "reps":1}
+  {"nom": "Pompes", "effort":30, "repos":60, "reps":12},
+  {"nom": "Squats", "effort":30, "repos":60, "reps":15},
+  {"nom": "Fentes", "effort":30, "repos":60, "reps":12},
+  {"nom": "Planche", "effort":40, "repos":60, "reps":1}
 ]
-
