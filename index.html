@@ -10,50 +10,45 @@
 <body>
 
 <header>
-  <h1>LudoWorkout</h1>
-  <p>Programme de musculation interactif</p>
+    <h1>LudoWorkout</h1>
 </header>
 
 <main>
-  <section id="profile-section">
-    <h2>Profil</h2>
-    <label>Nom: <input type="text" id="username"></label>
-    <label>Poids (kg): <input type="number" id="weight"></label>
-    <label>Niveau:
-      <select id="level">
-        <option value="beginner">Débutant</option>
-        <option value="intermediate">Intermédiaire</option>
-        <option value="advanced">Avancé</option>
-      </select>
-    </label>
-    <button id="saveProfile">Sauvegarder</button>
-  </section>
+    <section id="profile">
+        <h2>Profil utilisateur</h2>
+        <label>Nom : <input type="text" id="userName"></label>
+        <label>Niveau :
+            <select id="userLevel">
+                <option value="débutant">Débutant</option>
+                <option value="intermédiaire">Intermédiaire</option>
+                <option value="avancé">Avancé</option>
+            </select>
+        </label>
+        <button id="saveProfile">Enregistrer</button>
+    </section>
 
-  <section id="calendar-section">
-    <h2>Calendrier</h2>
-    <div id="calendar"></div>
-  </section>
+    <section id="calendar">
+        <h2>Calendrier</h2>
+        <div id="calendarGrid"></div>
+    </section>
 
-  <section id="workout-section">
-    <h2>Séance du jour</h2>
-    <div id="exercise-list"></div>
-    <div id="timer">
-      <span id="timer-label">Prêt</span>
-      <span id="timer-value">00:00</span>
-      <button id="startTimer">Démarrer séance</button>
-    </div>
-  </section>
+    <section id="workout">
+        <h2>Séance du jour</h2>
+        <div id="sessionInfo"></div>
+        <div id="timer">
+            <span id="timerPhase">Repos</span>
+            <span id="timerCountdown">00:00</span>
+        </div>
+        <button id="startSession">Démarrer séance</button>
+    </section>
 
-  <section id="progress-section">
-    <h2>Progression</h2>
-    <canvas id="progressChart"></canvas>
-  </section>
+    <section id="progress">
+        <h2>Progression & Calories</h2>
+        <canvas id="progressChart"></canvas>
+        <p>Calories brûlées : <span id="totalCalories">0</span> kcal</p>
+    </section>
 </main>
 
-<footer>
-  <p>LudoWorkout - Tous droits réservés</p>
-</footer>
-
-<script src="app.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
