@@ -1,105 +1,89 @@
-let exercices = [];
-let currentExercise = 0;
-let timer, globalSeconds = 0;
-let isRest = false;
-let totalCalories = 0;
+let profile = {
+    username: '',
+    weight: 70,
+    level: 'beginner'
+};
 
-const userWeight = document.getElementById("userWeight");
-const userName = document.getElementById("userName");
-const startBtn = document.getElementById("startBtn");
-const currentExerciseDiv = document.getElementById("currentExercise");
-const timerDiv = document.getElementById("timer");
-const globalTimerDiv = document.getElementById("globalTimer");
+let exercises = [];
+let workoutPlan = [];
+let timerInterval;
+let timerSeconds = 0;
+let currentStep = 0;
 
-const startSound = new Audio('start.mp3');
-const endSound = new Audio('end.mp3');
-
-async function loadExercices() {
-  const res = await fetch('exercices.json');
-  exercices = await res.json();
+async function loadExercises() {
+    const res = await fetch('data/exercises.json');
+    exercises = await res.json();
 }
 
-function updateTimerDisplay(seconds, element) {
-  const m = String(Math.floor(seconds / 60)).padStart(2,'0');
-  const s = String(seconds % 60).padStart(2,'0');
-  element.textContent = `${m}:${s}`;
+function saveProfile() {
+    profile.username = document.getElementById('username').value;
+    profile.weight = Number(document.getElementById('weight').value);
+    profile.level = document.getElementById('level').value;
+    localStorage.setItem('ludoProfile', JSON.stringify(profile));
+    alert('Profil sauvegardé !');
+    generateWorkout();
 }
 
-function calculateCalories(exercice, weight) {
-  const met = isRest ? 1.5 : 8;
-  return Math.round(met * weight * (exercice / 60));
-}
-
-function startGlobalTimer() {
-  setInterval(()=>{
-    globalSeconds++;
-    updateTimerDisplay(globalSeconds, globalTimerDiv);
-  },1000);
-}
-
-function nextStep() {
-  if(currentExercise >= exercices.length) {
-    clearInterval(timer);
-    alert("Séance terminée ! Total calories brûlées : "+totalCalories);
-    drawChart();
-    return;
-  }
-
-  const exo = exercices[currentExercise];
-  const duration = isRest ? exo.repos : exo.effort;
-  updateTimerDisplay(duration, timerDiv);
-
-  // changer couleur
-  timerDiv.className = isRest ? 'rest' : 'effort';
-  if(!isRest) startSound.play();
-  if(isRest) endSound.play();
-
-  let seconds = duration;
-  timer = setInterval(() => {
-    seconds--;
-    updateTimerDisplay(seconds, timerDiv);
-    if(seconds <=0) {
-      clearInterval(timer);
-      if(!isRest) totalCalories += calculateCalories(exo.effort, Number(userWeight.value || 70));
-      isRest = !isRest;
-      if(isRest === false) currentExercise++;
-      nextStep();
+function loadProfile() {
+    const saved = localStorage.getItem('ludoProfile');
+    if (saved) {
+        profile = JSON.parse(saved);
+        document.getElementById('username').value = profile.username;
+        document.getElementById('weight').value = profile.weight;
+        document.getElementById('level').value = profile.level;
     }
-  },1000);
-
-  currentExerciseDiv.textContent = isRest ? `Repos : ${exo.nom}` : `Exercice : ${exo.nom} (${exo.reps} reps)`;
 }
 
-startBtn.addEventListener('click', ()=>{
-  if(!userName.value || !userWeight.value) {
-    alert("Merci de remplir le profil");
-    return;
-  }
-  currentExercise = 0;
-  isRest = false;
-  totalCalories = 0;
-  globalSeconds = 0;
-  startGlobalTimer();
-  nextStep();
+function generateWorkout() {
+    workoutPlan = exercises.filter(e => e.level === profile.level).slice(0,5);
+    renderWorkout();
+}
+
+function renderWorkout() {
+    const list = document.getElementById('exercise-list');
+    list.innerHTML = '';
+    workoutPlan.forEach((ex, idx) => {
+        const card = document.createElement('div');
+        card.classList.add('exercise-card');
+        card.innerHTML = `<h3>${ex.name_fr}</h3>
+                          <p>Muscle: ${ex.muscle}</p>
+                          <p>Calories/min: ${ex.calories}</p>`;
+        list.appendChild(card);
+    });
+}
+
+function startTimer() {
+    timerSeconds = 0;
+    currentStep = 0;
+    document.getElementById('timer-label').innerText = 'Effort';
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    timerSeconds++;
+    let display = Math.floor(timerSeconds / 60).toString().padStart(2,'0') + ':' + (timerSeconds % 60).toString().padStart(2,'0');
+    document.getElementById('timer-value').innerText = display;
+    // ici on peut ajouter la logique pause/effort selon exos
+}
+
+function renderCalendar() {
+    const cal = document.getElementById('calendar');
+    cal.innerHTML = '';
+    const today = new Date();
+    for (let i=1;i<=30;i++) {
+        const day = document.createElement('div');
+        day.classList.add('calendar-day');
+        if (i === today.getDate()) day.classList.add('today');
+        day.innerText = i;
+        cal.appendChild(day);
+    }
+}
+
+document.getElementById('saveProfile').addEventListener('click', saveProfile);
+document.getElementById('startTimer').addEventListener('click', startTimer);
+
+loadExercises().then(() => {
+    loadProfile();
+    generateWorkout();
+    renderCalendar();
 });
-
-// Chart.js progression
-function drawChart() {
-  const ctx = document.getElementById('calorieChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: exercices.map(e=>e.nom),
-      datasets: [{
-        label: 'Calories brûlées',
-        data: exercices.map(e=>calculateCalories(e.effort, Number(userWeight.value))),
-        backgroundColor: 'rgba(40, 167, 69, 0.7)'
-      }]
-    },
-    options: {
-      scales: { y: { beginAtZero:true } }
-    }
-  });
-}
-
-loadExercices();
