@@ -1,58 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LudoWorkout</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LudoWorkout</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>LudoWorkout</h1>
-        <p>Programme personnalisé et interactif</p>
-    </header>
 
-    <main>
-        <section id="profile-section">
-            <h2>Profil</h2>
-            <label>Nom: <input type="text" id="username"></label>
-            <label>Poids (kg): <input type="number" id="weight"></label>
-            <label>Niveau:
-                <select id="level">
-                    <option value="beginner">Débutant</option>
-                    <option value="intermediate">Intermédiaire</option>
-                    <option value="advanced">Avancé</option>
-                </select>
-            </label>
-            <button id="saveProfile">Sauvegarder</button>
-        </section>
+<header>
+  <h1>LudoWorkout</h1>
+  <p>Programme de musculation interactif</p>
+</header>
 
-        <section id="calendar-section">
-            <h2>Calendrier</h2>
-            <div id="calendar"></div>
-        </section>
+<main>
+  <section id="profile-section">
+    <h2>Profil</h2>
+    <label>Nom: <input type="text" id="username"></label>
+    <label>Poids (kg): <input type="number" id="weight"></label>
+    <label>Niveau:
+      <select id="level">
+        <option value="beginner">Débutant</option>
+        <option value="intermediate">Intermédiaire</option>
+        <option value="advanced">Avancé</option>
+      </select>
+    </label>
+    <button id="saveProfile">Sauvegarder</button>
+  </section>
 
-        <section id="workout-section">
-            <h2>Séance du jour</h2>
-            <div id="exercise-list"></div>
-            <div id="timer">
-                <span id="timer-label">Prêt</span>
-                <span id="timer-value">00:00</span>
-                <button id="startTimer">Démarrer séance</button>
-            </div>
-        </section>
+  <section id="calendar-section">
+    <h2>Calendrier</h2>
+    <div id="calendar"></div>
+  </section>
 
-        <section id="progress-section">
-            <h2>Progression</h2>
-            <canvas id="progressChart"></canvas>
-        </section>
-    </main>
+  <section id="workout-section">
+    <h2>Séance du jour</h2>
+    <div id="exercise-list"></div>
+    <div id="timer">
+      <span id="timer-label">Prêt</span>
+      <span id="timer-value">00:00</span>
+      <button id="startTimer">Démarrer séance</button>
+    </div>
+  </section>
 
-    <footer>
-        <p>LudoWorkout - Tous droits réservés</p>
-    </footer>
+  <section id="progress-section">
+    <h2>Progression</h2>
+    <canvas id="progressChart"></canvas>
+  </section>
+</main>
 
-    <script src="app.js"></script>
+<footer>
+  <p>LudoWorkout - Tous droits réservés</p>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
