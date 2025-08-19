@@ -1,63 +1,81 @@
 let exercises = [];
-let currentExercise = 0;
+let workoutIndex = 0;
+let timer;
 let isRest = false;
-let timerInterval;
+let totalSeconds = 0;
 
-// Charger les exercices depuis le JSON
-fetch('exercises.json')
-  .then(res => res.json())
-  .then(data => {
-    exercises = data;
-    displayTodaySession();
-    generateCalendar();
-  });
+document.addEventListener("DOMContentLoaded", () => {
+    // Load exercises
+    fetch("exercises.json")
+        .then(res => res.json())
+        .then(data => exercises = data);
 
-// Afficher la séance du jour
-function displayTodaySession() {
-  const container = document.getElementById('session-exercises');
-  container.innerHTML = '';
-  exercises.forEach((ex, i) => {
-    const div = document.createElement('div');
-    div.textContent = `${ex.name} - ${ex.reps} reps - ${ex.duration}s`;
-    container.appendChild(div);
-  });
-}
+    // Profile save
+    document.getElementById("saveProfile").addEventListener("click", () => {
+        alert("Profil sauvegardé !");
+    });
 
-// Timer global pour la séance
-document.getElementById('start-btn').addEventListener('click', () => {
-  startExercise(currentExercise);
+    // Calendar
+    let calendarEl = document.getElementById('calendar');
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        dayCellClassNames: (info) => {
+            if(info.date.toDateString() === new Date().toDateString()){
+                return ['today'];
+            }
+        },
+    });
+    calendar.render();
+
+    // Start workout
+    document.getElementById("startWorkout").addEventListener("click", startWorkout);
+
+    // Progress chart
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Semaine 1","Semaine 2","Semaine 3","Semaine 4"],
+            datasets: [{
+                label: 'Calories brûlées',
+                data: [200, 250, 300, 350],
+                borderColor: 'rgba(255,99,132,1)',
+                backgroundColor: 'rgba(255,99,132,0.2)',
+            }]
+        },
+        options: { responsive: true }
+    });
 });
 
-function startExercise(index) {
-  if (index >= exercises.length) {
-    alert("Séance terminée !");
-    return;
-  }
+function startWorkout() {
+    workoutIndex = 0;
+    isRest = false;
+    nextExercise();
+}
 
-  let duration = isRest ? exercises[index].rest : exercises[index].duration;
-  document.getElementById('timer').textContent = duration;
-
-  timerInterval = setInterval(() => {
-    duration--;
-    document.getElementById('timer').textContent = duration;
-    if (duration <= 0) {
-      clearInterval(timerInterval);
-      isRest = !isRest;
-      if (!isRest) currentExercise++;
-      startExercise(currentExercise);
+function nextExercise() {
+    if(workoutIndex >= exercises.length) {
+        alert("Séance terminée !");
+        document.getElementById("timer").innerText = "00:00";
+        return;
     }
-  }, 1000);
+    const ex = exercises[workoutIndex];
+    const duration = isRest ? ex.rest : ex.duration;
+    document.getElementById("exercise-info").innerText = isRest ? "Repos" : ex.name;
+    totalSeconds = duration;
+    clearInterval(timer);
+    timer = setInterval(() => {
+        totalSeconds--;
+        document.getElementById("timer").innerText = `${Math.floor(totalSeconds/60).toString().padStart(2,'0')}:${(totalSeconds%60).toString().padStart(2,'0')}`;
+        if(totalSeconds <= 0) {
+            clearInterval(timer);
+            if(!isRest) {
+                isRest = true;
+            } else {
+                isRest = false;
+                workoutIndex++;
+            }
+            nextExercise();
+        }
+    }, 1000);
 }
-
-// Calendrier simple
-function generateCalendar() {
-  const cal = document.getElementById('calendar');
-  const today = new Date().getDate();
-  for(let i=1;i<=30;i++){
-    const day = document.createElement('div');
-    day.textContent = i;
-    if(i === today) day.classList.add('today');
-    cal.appendChild(day);
-  }
-}
-
