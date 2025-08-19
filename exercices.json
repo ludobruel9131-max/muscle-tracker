@@ -1,12 +1,12 @@
 [
-{"name":"Pompes","muscle":"Poitrine","level":"beginner","calories":8},
-{"name":"Squats","muscle":"Jambes","level":"beginner","calories":10},
-{"name":"Planche","muscle":"Abdos","level":"beginner","calories":5},
-{"name":"Fentes","muscle":"Jambes","level":"intermediate","calories":12},
-{"name":"Tractions","muscle":"Dos","level":"advanced","calories":15},
-{"name":"Burpees","muscle":"Full Body","level":"advanced","calories":20},
-{"name":"Dips","muscle":"Triceps","level":"intermediate","calories":10},
-{"name":"Mountain Climbers","muscle":"Abdos","level":"intermediate","calories":12},
-{"name":"Jumping Jacks","muscle":"Cardio","level":"beginner","calories":6},
-{"name":"Superman","muscle":"Dos","level":"beginner","calories":4}
+  {"name":"Pompes","level":"débutant","duration":30,"rest":80,"calories":8},
+  {"name":"Squats","level":"débutant","duration":30,"rest":80,"calories":10},
+  {"name":"Fentes","level":"intermédiaire","duration":30,"rest":80,"calories":12},
+  {"name":"Burpees","level":"avancé","duration":30,"rest":80,"calories":15},
+  {"name":"Planche","level":"débutant","duration":30,"rest":80,"calories":5},
+  {"name":"Mountain Climbers","level":"intermédiaire","duration":30,"rest":80,"calories":12},
+  {"name":"Jumping Jacks","level":"débutant","duration":30,"rest":80,"calories":7},
+  {"name":"Abdos Crunch","level":"débutant","duration":30,"rest":80,"calories":6},
+  {"name":"Dips","level":"intermédiaire","duration":30,"rest":80,"calories":10},
+  {"name":"Sauts sur place","level":"avancé","duration":30,"rest":80,"calories":14}
 ]
