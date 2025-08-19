@@ -4,51 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LudoWorkout</title>
-    <!-- FullCalendar -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
         <h1>LudoWorkout</h1>
+        <p>Programme personnalisé et interactif</p>
     </header>
 
-    <section id="profile">
-        <h2>Profil Utilisateur</h2>
-        <label>Poids (kg): <input type="number" id="weight" value="70"></label>
-        <label>Taille (cm): <input type="number" id="height" value="170"></label>
-        <label>Niveau: 
-            <select id="level">
-                <option value="débutant">Débutant</option>
-                <option value="intermédiaire">Intermédiaire</option>
-                <option value="avancé">Avancé</option>
-            </select>
-        </label>
-        <button id="saveProfile">Sauvegarder</button>
-    </section>
+    <main>
+        <section id="profile-section">
+            <h2>Profil</h2>
+            <label>Nom: <input type="text" id="username"></label>
+            <label>Poids (kg): <input type="number" id="weight"></label>
+            <label>Niveau:
+                <select id="level">
+                    <option value="beginner">Débutant</option>
+                    <option value="intermediate">Intermédiaire</option>
+                    <option value="advanced">Avancé</option>
+                </select>
+            </label>
+            <button id="saveProfile">Sauvegarder</button>
+        </section>
 
-    <section id="calendar-section">
-        <h2>Calendrier des séances</h2>
-        <div id="calendar"></div>
-    </section>
+        <section id="calendar-section">
+            <h2>Calendrier</h2>
+            <div id="calendar"></div>
+        </section>
 
-    <section id="workout-section">
-        <h2>Séance du jour</h2>
-        <div id="exercise-info"></div>
-        <div id="timer">00:00</div>
-        <button id="startWorkout">Démarrer la séance</button>
-    </section>
+        <section id="workout-section">
+            <h2>Séance du jour</h2>
+            <div id="exercise-list"></div>
+            <div id="timer">
+                <span id="timer-label">Prêt</span>
+                <span id="timer-value">00:00</span>
+                <button id="startTimer">Démarrer séance</button>
+            </div>
+        </section>
 
-    <section id="progress-section">
-        <h2>Progression</h2>
-        <canvas id="progressChart"></canvas>
-    </section>
+        <section id="progress-section">
+            <h2>Progression</h2>
+            <canvas id="progressChart"></canvas>
+        </section>
+    </main>
 
-    <!-- FullCalendar -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
-    <script src="script.js"></script>
+    <footer>
+        <p>LudoWorkout - Tous droits réservés</p>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
